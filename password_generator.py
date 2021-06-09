@@ -17,17 +17,23 @@ __status__ = "Production"
 import secrets
 import string
 
-chars = string.ascii_letters + string.digits + string.punctuation
-passwd_len = 12
 
-while True:
-    psswd = ''.join(secrets.choice(chars) for i in range(passwd_len))
+def generate_password():
+    chars = string.ascii_letters + string.digits + string.punctuation
+    passwd_len = 12
 
-    if (
-        any(c.islower() for c in psswd) &
-        any(c.isupper() for c in psswd) &
-        any(c.isdigit() for c in psswd) &
-        any(c in string.punctuation for c in psswd)
-    ):
-        print(psswd)
-        break
+    while True:
+        psswd = ''.join(secrets.choice(chars) for i in range(passwd_len))
+
+        if (
+            any(c.islower() for c in psswd) &
+            any(c.isupper() for c in psswd) &
+            any(c.isdigit() for c in psswd) &
+            any(c in string.punctuation for c in psswd)
+        ):
+            return psswd
+
+
+if __name__ == "__main__":
+    psswd = generate_password()
+    print(psswd)
